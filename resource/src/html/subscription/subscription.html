@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>收藏订阅</title>
+    @@include('../components/css.html')
+    <link type="text/css" href="../../css/eGovernmentThesauri.css" rel="stylesheet">
+</head>
+<body>
+@@include('../components/header.html')
+<div class="title-wrap">
+    <div class="title-middle">
+        <h2 class="clearfix fl">订阅中心</h2>
+        <p class="search-con fr">
+            <input class="search-txt" type="text" placeholder="在结果中搜索">
+            <i class="search-ico iconfont icon-sousuo" onclick="filterListBySearch()"></i>
+        </p>
+    </div>
+</div>
+<div class="main">
+    <div class="content-wrap clearfix">
+        <div class="fl pt10">@@include('../components/sub-left-bar.html')</div>
+        <div class="list-con fl">
+            
+            <div class="list-wrap">
+                <div class="sort-wrap sort-wrap-sub clearfix">
+
+                    <div class="tab-line-sub">
+                        <ul class="tab-menu clearfix">
+                            <li class="tab-item active">已订阅的资源</li>
+                            <li class="tab-item">申请中的资源</li>
+                            <li class="tab-item">被拒绝的申请</li>
+                        </ul>
+                    </div>
+
+                    <ul id="paixuliang" class="sort-list-wrap fl">
+                        <li class="sort-item active">按发布时间<i class="sort-ico"></i></li>
+                        <li class="sort-item">按访问量<i class="sort-ico"></i></li>
+                    </ul>
+                    <p class="result fr">为您找到<span class="result-count">0</span>条记录</p>
+                </div>
+                
+                <div class="tab-cont tab-cont1">
+                    <div id="list-subscription1"></div>
+
+                    <script id="list-subscription1-template" type="text/x-handlebars-template">
+                    {{#if data}}
+                    <ul class="list-item-wrap">
+                        {{#with data}}
+                        {{#each this}}
+                        <li class="list-item">
+                            <div class="title-wrap">
+                                <a href="../directory/directory-resources-details.html?id={{id}}&resourcecode={{resourcecode}}" class="title" target="_blank" title='{{name}}'>{{name}}</a>
+                            </div>
+                            <div class="info-wrap clearfix">
+                                <div class="details-wrap fl">
+                                    <p class="briefly">{{handleEmpty absractinfo "--"}}</p>
+                                    <ul class="info-resources clearfix">
+                                        <li class="provider">
+                                            <span class="info-label">信息资源提供方：</span>
+                                            <span class="info-value">{{handleEmpty providedept "--"}}</span>
+                                        </li>
+                                        <li class="catalog">
+                                            <span class="info-label">信息资源目录：</span>
+                                            <span class="info-value">{{handleEmpty providedeptchild "--"}}</span>
+                                        </li>
+                                        <li class="type">
+                                            <span class="info-label">共享类型：</span>
+                                            <span class="info-value">{{handleSharedMode shartype}}</span>
+                                        </li>
+                                        <li class="publish-time">
+                                            <span class="info-label">发布时间：</span>
+                                            <span class="info-value">{{handleEmpty createtime "--"}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="operation-wrap fr">
+                                    <a class="btn apply apply-sub" href="../directory/directory-resources-details.html?id={{id}}&resourcecode={{resourcecode}}"><i class="iconfont icon-shenqing"></i>数据详情</a>
+                                </div>
+                            </div>
+                            <ul class="statistics-wrap clearfix">
+                                <li class="statistics-visit">
+                                    <i class="iconfont icon-chakan"></i>
+                                    <p class="label-wrap">
+                                        <span class="statistics-label">访问量：</span>
+                                        <span class="statistics-value visit">{{accesscount}}</span>
+                                    </p>
+                                </li>
+                                <li class="statistics-use">
+                                    <i class="iconfont icon-jigoushuju"></i>
+                                    <p class="label-wrap">
+                                        <span class="statistics-label">使用量：</span>
+                                        <span class="statistics-value visit">0</span>
+                                    </p>
+                                </li>
+                                <li class="statistics-data">
+                                    <i class="iconfont icon-shujuliang"></i>
+                                    <p class="label-wrap">
+                                        <span class="statistics-label">数据量：</span>
+                                        <span class="statistics-value visit">0</span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </li>
+
+                        {{/each}}
+                        {{/with}}
+                    </ul>
+                    {{else}}
+                    <p class="no-server">
+                        <span class="no-server-txt">暂无数据</span>
+                    </p>
+                    {{/if}}
+                    </script>
+
+                </div>
+
+                <div class="tab-cont tab-cont2 none">
+
+                    <div id="list-subscription2"></div>
+
+                    <script id="list-subscription2-template" type="text/x-handlebars-template">
+                    {{#if data}}
+                    <ul class="list-item-wrap">
+                        {{#with data}}
+                        {{#each this}}
+                        <li class="list-item">
+                            <div class="title-wrap">
+                                <a href="../directory/directory-resources-details.html?id={{id}}&resourcecode={{resourcecode}}" class="title" target="_blank" title='{{name}}'>{{name}}</a>
+                            </div>
+                            <div class="info-wrap clearfix">
+                                <div class="details-wrap fl">
+                                    <p class="briefly">{{handleEmpty absractinfo "--"}}</p>
+                                    <ul class="info-resources clearfix">
+                                        <li class="provider">
+                                            <span class="info-label">信息资源提供方：</span>
+                                            <span class="info-value">{{handleEmpty providedept "--"}}</span>
+                                        </li>
+                                        <li class="catalog">
+                                            <span class="info-label">信息资源目录：</span>
+                                            <span class="info-value">{{handleEmpty providedeptchild "--"}}</span>
+                                        </li>
+                                        <li class="type">
+                                            <span class="info-label">共享类型：</span>
+                                            <span class="info-value">{{handleSharedMode shartype}}</span>
+                                        </li>
+                                        <li class="publish-time">
+                                            <span class="info-label">发布时间：</span>
+                                            <span class="info-value">{{handleEmpty createtime "--"}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="operation-wrap fr">
+                                    <button class="btn collection collection-sub" onclick='changeApplyState({{id}});getListData(1,true);'><i class="iconfont icon-L1"></i>取消申请</button>
+                                    <button class="btn collection collection-sub dn" onclick='window.location.href="../directory/directory-apply.html?id={{id}}"'><i class="iconfont icon-shenqing"></i>申请</button>
+                                </div>
+                            </div>
+                            <ul class="statistics-wrap clearfix">
+                                <li class="statistics-visit">
+                                    <i class="iconfont icon-chakan"></i>
+                                    <p class="label-wrap">
+                                        <span class="statistics-label">访问量：</span>
+                                        <span class="statistics-value visit">{{accesscount}}</span>
+                                    </p>
+                                </li>
+                                <li class="statistics-use">
+                                    <i class="iconfont icon-jigoushuju"></i>
+                                    <p class="label-wrap">
+                                        <span class="statistics-label">使用量：</span>
+                                        <span class="statistics-value visit">0</span>
+                                    </p>
+                                </li>
+                                <li class="statistics-data">
+                                    <i class="iconfont icon-shujuliang"></i>
+                                    <p class="label-wrap">
+                                        <span class="statistics-label">数据量：</span>
+                                        <span class="statistics-value visit">0</span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </li>
+
+                        {{/each}}
+                        {{/with}}
+                    </ul>
+                    {{else}}
+                    <p class="no-server">
+                        <span class="no-server-txt">暂无数据</span>
+                    </p>
+                    {{/if}}
+                    </script>
+
+                </div>
+
+                <div class="tab-cont tab-cont3 none">
+
+                    <div id="list-subscription3"></div>
+
+                    <script id="list-subscription3-template" type="text/x-handlebars-template">
+                    {{#if data}}
+                    <div class="sort-wrap sort-wrap-sub clearfix">
+                        <table cellpadding="0" cellspacing="0" class="sub-table">
+                            <tr>
+                                <th>信息资源名称</th>
+                                <th>申请时间</th>
+                                <th>申请详情</th>
+                                <th>审批时间</th>
+                                <th>审批意见</th>
+                            </tr>
+                            {{#with data}}
+                            {{#each this}}
+                            
+                            <tr>
+                                <td><a href="../directory/directory-resources-details.html?id={{id}}&resourcecode={{resourcecode}}" class="sub-table-a">{{name}}</a></td>
+                                <td>{{apply_time}}</td>
+                                <td><a href="../directory/directory-resources-details.html?id={{id}}&resourcecode={{resourcecode}}">查看</a></td>
+                                <td>{{sp_time}}</td>
+                                <td>{{auditOption}}</td>
+                            </tr>
+
+                            {{/each}}
+                            {{/with}}
+                        </table>
+                    </div>
+                    {{else}}
+                    <p class="no-server">
+                        <span class="no-server-txt">暂无数据</span>
+                    </p>
+                    {{/if}}
+                    </script>
+
+                    
+                            
+                            
+                        
+                </div>
+
+                <div class="page-wrap clearfix">
+                    <div class="pagination fr clearfix"></div>
+                    <span class="total-count fr">共0页，每页0条</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@@include('../components/footer.html')
+</body>
+@@include('../components/js.html')
+<script src="../../js/common/jquery.pagination.js"></script>
+<script src="../../js/subscription/subscription.js"></script>
+</html>

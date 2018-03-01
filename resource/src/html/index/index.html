@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>首页</title>
+	@@include('../components/css.html')
+	<link type="text/css" href="../../css/index.css" rel="stylesheet">
+</head>
+<body>
+@@include('../components/header.html')
+
+<div class="banner">
+	<div class="wapper clearfix">
+		<div class="banner-data">
+			<div id="index-chart" class="index-chart"></div>
+			<div class="banner-data2">
+				<ul id="banner-data"></ul>
+				<script id="banner-data-template" type="text/x-handlebars-template">
+		            <li>
+						<p><span>{{format_num catalogcount}}</span> 个</p>
+						<p>编制目录总数</p>
+					</li>
+					<li>
+						<p><span>{{format_num releasecatalogcount}}</span> 个</p>
+						<p>已发布共享目录总数</p>
+					</li>
+		        </script>
+			</div>
+			
+		</div>
+		<div class="banner-newnews">
+			<h1>最新动态</h1>
+			<div class="newnews">
+				<ul id="newnews"></ul>
+				<script id="newnews-template" type="text/x-handlebars-template">
+		            {{#each this}}
+		            <li title="【{{providedept}}】于{{importtime}} 发布了 {{count}} 条目录"><em>【{{providedept}}】</em>于{{importtime}} 发布了 <span>{{count}}</span> 条目录</li>
+		            {{/each}}
+		        </script>
+				<div class="newnews-masked"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="catalog">
+	<div class="wapper">
+		<ul class="catalog-box">
+			<li class="catalog-box1">
+				<div class="catalog-logo"></div>
+				<div class="catalog-data" onclick="openSys(1)">
+					<p class="catalog-data1">编目系统</p>
+					<p class="catalog-data2">资源目录的编制/维护/发布</p>
+				</div>
+			</li>
+			<li class="catalog-box2">
+				<div class="catalog-logo"></div>
+				<div class="catalog-data"  onclick="openSys(2)">
+					<p class="catalog-data1">信息资源管理系统</p>
+					<p class="catalog-data2">资源内容的维护/发布管理</p>
+				</div>
+			</li>
+			<li class="catalog-box3">
+				<div class="catalog-logo"></div>
+				<div class="catalog-data" onclick="openSys(3)">
+					<p class="catalog-data1">自查清理整合清单及工作进展填报系统</p>
+					<p class="catalog-data2">资源整合工作整理上报</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="index-cont">
+	<div class="wapper">
+		<div class="index-title"><p><span>政务数据推荐</span></p></div>
+		<div class="index-recommend">
+			<div class="index-recommendbox index-recommend1">
+				<div class="index-recommend-color"></div>
+				<div class="index-recommend-cont">
+					<ul id="index-recommend-list1" class="index-recommend-list"></ul>
+					<script id="index-recommend-list1-template" type="text/x-handlebars-template">
+						<li class="index-recommend-first">
+							<p class="index-recommend-tit">政务主题</p>
+							<p class="index-recommend-text">提供涉及国家民生、市场、金融、安全、能源、信用等多个领域主题的数据信息资源</p>
+							<p class="index-recommend-btn"><a href="../baseInfo/index.html?code=2">查看更多</a></p>
+						</li>
+			            {{#each this}}
+			            <li>
+							<p class="index-recommend-tit" title="{{name}}">{{name}}</p>
+							<p class="index-recommend-tit2" title="{{description}}">{{description}}</p>
+							<p class="index-recommend-logo"><img src="../../img/index-recommend-logo{{addOne @index}}.png"></p>
+							<p class="index-recommend-num">资源总量：<span>{{count}}</span>条</p>
+							<p class="index-recommend-btn"><a href="../baseInfo/index.html?code=2&currCode={{code}}">查看全部资源</a></p>
+						</li>
+			            {{/each}}
+			        </script>
+				</div>
+			</div>
+			<div class="index-recommendbox index-recommend2">
+				<div class="index-recommend-color"></div>
+				<div class="index-recommend-cont">
+					<ul id="index-recommend-list2" class="index-recommend-list"></ul>
+					<script id="index-recommend-list2-template" type="text/x-handlebars-template">
+						<li class="index-recommend-first">
+							<p class="index-recommend-tit">部门资源</p>
+							<p class="index-recommend-text">提供涉及国家、各省市及地方直属部门所管理的多项数据信息资源</p>
+							<p class="index-recommend-btn"><a href="../baseInfo/index.html?code=3">查看更多</a></p>
+						</li>
+			            {{#each this}}
+			            <li>
+							<p class="index-recommend-tit" title="{{name}}">{{name}}</p>
+							<p class="index-recommend-tit2" title="{{description}}">{{description}}</p>
+							<p class="index-recommend-logo"><img src="../../img/index-recommend-logo{{addFives @index}}.png"></p>
+							<p class="index-recommend-num">资源总量：<span>{{count}}</span>条</p>
+							<p class="index-recommend-btn"><a href="../baseInfo/index.html?code=3&currCode={{code}}">查看全部资源</a></p>
+						</li>
+			            {{/each}}
+			        </script>
+				</div>
+			</div>
+			<div class="index-recommendbox index-recommend3">
+				<div class="index-recommend-color"></div>
+				<div class="index-recommend-cont">
+					<ul id="index-recommend-list3" class="index-recommend-list"></ul>
+					<script id="index-recommend-list3-template" type="text/x-handlebars-template">
+						<li class="index-recommend-first">
+							<p class="index-recommend-tit">基础信息</p>
+							<p class="index-recommend-text">提供国家人口、法人单位、自然资源/地理空间、社会信用、电子证照共五大基础信息资源</p>
+							<p class="index-recommend-btn"><a href="../baseInfo/index.html?code=1">查看更多</a></p>
+						</li>
+			            {{#each this}}
+			            <li>
+							<p class="index-recommend-tit" title="{{name}}">{{name}}</p>
+							<p class="index-recommend-tit2" title="{{description}}">{{description}}</p>
+							<p class="index-recommend-logo"><img src="../../img/index-recommend-logo{{addNine @index}}.png"></p>
+							<p class="index-recommend-num">资源总量：<span>{{count}}</span>条</p>
+							<p class="index-recommend-btn"><a href="../baseInfo/index.html?code=1&currCode={{code}}">查看全部资源</a></p>
+						</li>
+			            {{/each}}
+			        </script>
+				</div>
+			</div>
+		</div>
+
+		<div class="index-bottom">
+			<div class="index-contents">
+				<div class="index-title"><p><span>最新数据目录</span></p></div>
+				<div class="index-contents-module">
+					<ul id="index-contents"></ul>
+					<script id="index-contents-template" type="text/x-handlebars-template">
+			            {{#each this}}
+			            <li>
+							<p class="index-contents-tit"><a href="../directory/directory-resources-details.html?id={{id}}&resourcecode={{resourcecode}}">{{name}}</a></p>
+							<p class="index-contents-news"><span>信息提供方:</span>{{providedept}}</p>
+							<p class="index-contents-news"><span>发布时间:</span>{{createtime}}</p>
+						</li>
+			            {{/each}}
+			        </script>
+				</div>
+			</div>
+			<div class="index-popular">
+				<div class="index-title"><p><span>目录访问排行</span></p></div>
+				<div class="index-popularbox">
+					<div class="index-popular-module">
+						<ul id="index-popular"></ul>
+						<script id="index-popular-template" type="text/x-handlebars-template">
+				            {{#each this}}
+				            <li>
+								<em></em>
+								<div class="index-popularl">
+									<p class="index-popularl-tit"><a href="../directory/directory-resources-details.html?id={{id}}&resourcecode={{resourcecode}}">{{name}}</a></p>
+								</div>
+								<div class="index-popularc"><p class="index-popularl-address">信息提供方:<span>{{provider}}</span></p></div>
+								<div class="index-popularr">
+									<p><i class="iconfont icon-chakan"></i><span>{{accesscount}}</span>次</p>
+								</div>
+							</li>
+				            {{/each}}
+				        </script>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<!---信息资源管理系统 页面跳转-->
+<div style="display: none;">
+	<form  method="post" id="loginform" class="loginCon" target="_blank">
+		<p>用户名</p>
+		<div class="login_input">
+			<input type="text" name="username" id="username" autocomplete="off"  class="login_name" value="gab"/>
+		</div>
+		<p>密码</p>
+		<div class="login_input">
+			<input type="password" name="password" id="password" autocomplete="off"  class="login_pwd"  value="111111"/>
+		</div>
+		<input type="button" value="登录" class="login_submit"/>
+	</form>
+</div>
+
+@@include('../components/footer.html')
+</body>
+@@include('../components/js.html')
+<script type="text/javascript" src="../../js/common/echarts.min.js"></script>
+<script type="text/javascript" src="../../js/common/echarts-liquidfill.min.js"></script>
+<script type="text/javascript" src="../../js/index/index.js"></script>
+
+</html>

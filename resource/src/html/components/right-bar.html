@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>右侧菜单</title>
+    <link rel="stylesheet" href="../../css/iconfont.css">
+    <link rel="stylesheet" href="../../css/commonn.css">
+</head>
+<body>
+<div class="right-bar">
+    <div class="right-bar-list">
+        <h2 class="h2-title">目录访问<span>Top5</span></h2>
+        <ul id='catalog-top5' class="ul-list">
+        </ul>
+        <script id="catalog-top5-template" type="text/x-handlebars-template">
+            {{#each this}}
+            <li class="clearfix">
+                <i class="fl i-medal icon iconfont {{handleClass @index}}"></i>
+                <div class="fl div-nedal-content">
+                    <h3 title={{name}}>
+                        <a class="catalog-link" href="../directory/directory-resources-details.html?id={{id}}&resourcecode={{resourcecode}}" target="_blank">{{handleEmpty name "--"}}</a>
+                    </h3>
+                    <p class="label-line clearfix"><span class="label">信息提供方：</span><span class="label-value">{{handleEmpty provider "--"}}</span></p>
+                </div>
+            </li>
+            {{/each}}
+        </script>
+    </div>
+</div>
+</body>
+</html>

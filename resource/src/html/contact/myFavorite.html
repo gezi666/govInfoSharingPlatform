@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>订阅中心</title>
+    @@include('../components/css.html')
+    <link type="text/css" href="../../css/index.css" rel="stylesheet">
+    <link type="text/css" href="../../css/eGovernmentThesauri.css" rel="stylesheet">
+</head>
+<body>
+@@include('../components/header.html')
+<div class="title-wrap">
+    <div class="title-middle">
+        <h2 id="title" class="clearfix fl">订阅中心</h2>
+        <p class="search-con fr">
+            <input class="search-txt" type="text" placeholder="在结果中搜索">
+            <i class="search-ico iconfont icon-sousuo" onclick='filterListBySearch()'></i>
+        </p>
+    </div>
+</div>
+<div class="main">
+    <div class="content-wrap clearfix">
+        <div class="fl pt10">
+            <div class="left-bar2">
+                <a class="clickable active" title="我的收藏">
+                    <i class="icon iconfont icon-tbegin icon-L1"></i>
+                    <span>我的收藏</span>
+                </a>
+                <a class="clickable" title="我的订阅">
+                    <i class="icon iconfont icon-tbegin icon-dingyue"></i>
+                    <span>我的订阅</span>
+                </a>
+            </div>
+        </div>
+        <div class="list-con fl">
+            <div id="list-wrap" class="list-wrap">
+                <div class="sort-wrap clearfix">
+                    <ul class="sort-list-wrap fl">
+                        <li class="sort-item active">按发布时间<i class="sort-ico"></i></li>
+                        <li class="sort-item">按数据量<i class="sort-ico"></i></li>
+                        <li class="sort-item">按访问量<i class="sort-ico"></i></li>
+                        <li class="sort-item">按使用量<i class="sort-ico"></i></li>
+                    </ul>
+                    <p class="result fr">为您找到<span class="result-count">0</span>条记录</p>
+                </div>
+                <div id="list-wrap1"></div>
+            </div>
+            <script id="list-wrap1-template" type="text/x-handlebars-template">
+                {{#if data}}
+                <ul class="list-item-wrap">
+                    {{#with data}}
+                    {{#each this}}
+                    <li class="list-item">
+                        <div class="title-wrap">
+                            <a href="../directory/directory-resources-details.html?id={{id}}" class="title" target="_blank" title='{{name}}'>{{name}}</a>
+                        </div>
+                        <div class="info-wrap clearfix">
+                            <div class="details-wrap fl">
+                                <p class="briefly" title='{{absractinfo}}'>{{handleEmpty absractinfo "--"}}</p>
+                                <ul class="info-resources clearfix">
+                                    <li class="provider">
+                                        <span class="info-label">信息资源提供方：</span>
+                                        <span class="info-value" title="{{providedept}}">{{handleEmpty providedept "--"}}</span>
+                                    </li>
+                                    <li class="catalog">
+                                        <span class="info-label">信息资源目录：</span>
+                                        <span class="info-value" title="{{providedeptchild}}">{{handleEmpty providedeptchild "--"}}</span>
+                                    </li>
+                                    <li class="type">
+                                        <span class="info-label">共享类型：</span>
+                                        <span class="info-value">{{handleSharedMode shartype}}</span>
+                                    </li>
+                                    <li class="publish-time wf30">
+                                        <span class="info-label">发布时间：</span>
+                                        <span class="info-value">{{handleEmpty createtime "--"}}</span>
+                                    </li>
+                                    <li class="update-time wf30">
+                                        <span class="info-label">更新时间：</span>
+                                        <span class="info-value">{{handleEmpty createtime "--"}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="operation-wrap fr">
+                                <button class="btn collection"><i class="iconfont icon-L1"></i>取消收藏</button>
+                            </div>
+                        </div>
+                        <ul class="statistics-wrap clearfix">
+                            <li class="statistics-visit">
+                                <i class="iconfont icon-chakan"></i>
+                                <p class="label-wrap">
+                                    <span class="statistics-label">访问量：</span>
+                                    <span class="statistics-value visit">{{handleEmpty accesscount 0}}</span>
+                                </p>
+                            </li>
+                            <li class="statistics-use">
+                                <i class="iconfont icon-jigoushuju"></i>
+                                <p class="label-wrap">
+                                    <span class="statistics-label">订阅量：</span>
+                                    <span class="statistics-value visit">0</span>
+                                </p>
+                            </li>
+                            <li class="statistics-data">
+                                <i class="iconfont icon-shujuliang"></i>
+                                <p class="label-wrap">
+                                    <span class="statistics-label">数据量：</span>
+                                    <span class="statistics-value visit">0</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                    {{/each}}
+                    {{/with}}
+                </ul>
+                {{else}}
+                <p class="no-server">
+                    <span class="no-server-txt">暂无数据</span>
+                </p>
+                {{/if}}
+            </script>
+            <div class="page-wrap clearfix">
+                <div class="pagination fr clearfix"></div>
+                <span class="total-count fr">共0页，每页0条</span>
+            </div>
+        </div>
+    </div>
+</div>
+@@include('../components/footer.html')
+</body>
+@@include('../components/js.html')
+<script src="../../js/common/jquery.pagination.js"></script>
+<script src="../../js/contact/myFavorite.js"></script>
+</html>

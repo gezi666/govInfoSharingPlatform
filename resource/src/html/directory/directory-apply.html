@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>数据目录申请</title>
+    @@include('../components/css.html')
+</head>
+
+<body>
+@@include('../components/header.html')
+<div class="main">
+    <div class="apply-wrap">
+        <p class="apply-title">数据目录申请</p>
+        <form action="">
+            <div id="get-list-wrap" class="get-list-wrap"></div>
+            <script id="get-list-template" type="text/x-handlebars-template">
+                <div class="list-info-wrap">
+                    <p class="term-label">目录信息</p>
+                    <table class="list-info-table" cellspacing="0">
+                        <tr class="even">
+                            <td class="first-col">信息资源名称</td>
+                            <td>{{handleEmpty name "--"}}</td>
+                        </tr>
+                        <tr>
+                            <td class="first-col">信息资源分类</td>
+                            <td>{{handleEmpty providedeptchild "--"}}</td>
+                        </tr>
+                        <tr class="even">
+                            <td class="first-col">资源提供方</td>
+                            <td>{{handleEmpty providedept "--"}}</td>
+                        </tr>
+                        <tr>
+                            <td class="first-col">信息资源摘要</td>
+                            <td>{{handleEmpty absractinfo "--"}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="data-item-wrap">
+                    <p class="term-label">信息项</p>
+                    <table class="table" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <td class="ckeck-col"><span class="ckeck-box ckeck-all" onclick='checkLine(this)'></span></td>
+                                <td class="item-name">信息项名称</td>
+                                <td>数据项类型</td>
+                                <td>信息资源摘要</td>
+                                <td>共享方式</td>
+                                <td>共享条件</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#if infomationlist}}
+                                {{#with infomationlist}}
+                                    {{#each this}}
+                                    <tr class="{{isEven @index}}">
+                                        <td><span class="ckeck-box" onclick='checkLine(this,{{@index}})'></span></td>
+                                        <td class="item-name">{{handleEmpty column_name "--"}}</td>
+                                        <td>{{handleEmpty datatypename "--"}}</td>
+                                        <td>--</td>
+                                        <td>{{handleEmpty sharinmodename "--"}}</td>
+                                        <td>{{handleEmpty sharingcondition "--"}}</td>
+                                    </tr>
+                                    {{/each}}
+                                {{/with}}
+                            {{else}}
+                            <tr>
+                                <td colspan="9">
+                                    <p class="no-server">
+                                        <span class="no-server-txt">暂无数据</span>
+                                    </p>
+                                </td>
+                            </tr>
+                            {{/if}}
+                        </tbody>
+                    </table>
+                </div>
+            </script>
+            <div class="apply-info-wrap">
+                <p class="term-label">申请信息填写</p>
+                <div class="input-info">
+                    <div class="input-line clearfix">
+                        <span class="input-label fl"><b class="required">*</b>申请类别：</span>
+                        <p class="radio-wrap fl">
+                            <span class="type-radio active">直接交换</span>
+                            <span class="type-radio">文件交换</span>
+                            <span class="type-radio">服务交换</span>
+                        </p>
+                    </div>
+                    <p class="input-line clearfix">
+                        <span class="input-label fl"><b class="required">*</b>联系人：</span>
+                        <input class="apply-input contacts fl" type="text">
+                    </p>
+                    <p class="input-line clearfix">
+                        <span class="input-label fl"><b class="required">*</b>联系人电话：</span>
+                        <input class="apply-input tel fl" type="text">
+                    </p>
+                    <!-- <div class="input-line clearfix">
+                        <span class="input-label fl"><b class="required">*</b>申请部门：</span>
+                        <p class="input-group fl clearfix">
+                            <input class="department fl" type="text">
+                            <select class="select-department fl" name="department" id="department">
+                                <option value="">选择部门</option>
+                                <option value="公安部">公安部</option>
+                                <option value="纪检委">纪检委</option>
+                                <option value="发改委">发改委</option>
+                            </select>
+                        </p>
+                    </div> -->
+                    <p class="input-line clearfix">
+                        <span class="input-label fl">申请目录：</span>
+                        <span class="catalog">--</span>
+                    </p>
+                    <p class="input-line clearfix">
+                        <span class="input-label fl">有限期：</span>
+                        <input class="apply-input select-time star-time fl" type="text" id="d10" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'d11\')}'})">
+                        <span class="slide fl">至</span>
+                        <input class="apply-input select-time ent-time fl" type="text" id="d11" onclick="WdatePicker({minDate:'#F{$dp.$D(\'d10\')}'})">
+                    </p>
+                    <p class="input-line clearfix">
+                        <span class="input-label fl"><b class="required">*</b>申请理由：</span>
+                        <textarea class="apply-input reason fl" placeholder="不超过200字" maxlength="200"></textarea>
+                    </p>
+                    <p class="btn-line">
+                        <span class="btn go-back"><i class="iconfont icon-fanhui"></i>返回</span>
+                        <span class="btn submit-apply"><i class="iconfont icon-tijiao"></i>提交申请</span>
+
+                        <span class="fail-tip">提交失败！</span>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@@include('../components/footer.html')
+</body>
+@@include('../components/js.html')
+<script src="../../js/common/My97DatePicker/WdatePicker.js"></script>
+<script src="../../js/directory/directory-apply.js"></script>
+</html>

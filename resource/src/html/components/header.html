@@ -1,0 +1,84 @@
+<div class="header">
+    <div class="head-box wapper clearfix">
+        <div class="head-logo"><img src="../../img/logo.png"></div>
+        <div class="head-menu">
+            <i class="iconfont icon-tuichu head-tuichu" onclick="User.signOut()" title="安全退出"></i>
+            <div class="head-user">
+                <i class="iconfont icon-yonghu head-yonghu"></i>
+                <span class="head-username"></span>
+                <i class="head-down"></i>
+                <div class="head-user-dis">
+                    <p onclick="window.location.href='../subscription/collection.html'">订阅中心</p>
+                    <p class="lastp" onclick="User.signOut()">退出登录</p>
+                </div>
+            </div>
+            <div class="head-login">
+                <i class="iconfont icon-yonghu head-yonghu fl"></i>
+                <span class="head-loginname">请登录</span>
+                <i class="head-down"></i>
+                <div class="head-login-dis">
+                    <em class="jiantou"></em>
+                    <h2>登录</h2>
+                    <div class="head-login-input">
+                        <span>用户名：</span>
+                        <input id="userName" type="text" name="" placeholder="请输入您的用户名">
+                    </div>
+                    <div class="head-login-input">
+                        <span>密　码：</span>
+                        <input id="passWord" type="password" name="" placeholder="请输入您的密码">
+                    </div>
+                    <div class="head-login-input2">
+                        <input id="verification" type="text" name="" onkeyup="keyLogin()">
+                        <img id="verification-img">
+                        <i class="iconfont icon-shuaxin" onclick="User.loginVef()"></i>
+                    </div>
+                    <div class="head-login-btn"><input type="button" name="" value="登录" onclick="User.loginConfirm()"></div>
+                    <div class="login-erroy"></div>
+                </div>
+            </div>
+            <div class="head-search">
+                <input id="searchTitle" type="text" class="head-search-input" onkeydown="titleKeydown()">
+                <i onclick="searchResource()" class="iconfont icon-sousuo head-search-icon"></i>
+            </div>
+        </div>
+    </div>
+    <div class="navbox">
+        <div class="nav">
+            <div class="nav-box wapper clearfix">
+                <ul class="nav-list">
+                    <li class="firstli">
+                        <i class="iconfont icon-mulu1"></i>政务数据分类
+                        <div class="nav-more" id="classify">
+                        </div>
+                        <script id="classify-template" type="text/x-handlebars-template">
+                            <ul class="nav-more-left">
+                                {{#each data}}
+                                <li class="nth{{addOne @index}}">
+                                    <a href="../baseInfo/index.html?code={{code}}"><i
+                                            class="iconfont icon-file"></i>{{name}}<span></span><em></em></a>
+                                    <ul class="nav-more-dis">
+                                        {{#each list}}
+                                        <li>
+                                            <div><a href="../baseInfo/index.html?code={{../code}}&currCode={{code}}">
+                                                <p class="nav-more-dis2">{{name}}</p>
+                                                <p class="nav-more-dis3">{{count}}</p>
+                                            </a>
+                                            </div>
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </script>
+                    </li>
+                    <li class="active"><a href="../index/index.html"><i class="iconfont icon-zhuye"></i>首页</a></li>
+                    <li><a href="../directory/index.html"><i class="iconfont icon-mulu"></i>找目录</a></li>
+                    <li><a href="../material/index.html"><i class="iconfont icon-ziliao"></i>资料规范</a></li>
+                    <li id="fusion"><a href="../fusion/index.html"><i class="iconfont icon-gongxiang"></i>融合共享动态</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

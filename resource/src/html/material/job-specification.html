@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>资料规范</title>
+    @@include('../components/css.html')
+    <link type="text/css" href="../../css/index.css" rel="stylesheet">
+    <link type="text/css" href="../../css/materialSpecification.css" rel="stylesheet">
+</head>
+<body>
+@@include('../components/header.html')
+
+<div class="content p20 cf">
+    <h2 class="h2-bl-title"><span id="spanTitle"></span></h2>
+    <ul class="ul-list-box" id="list">
+    </ul>
+    <div class="page-wrap clearfix">
+        <div class="pagination fr clearfix"></div>
+        <span class="total-count fr">共0页，每页0条</span>
+    </div>
+    <script id="list-template" type="text/x-handlebars-template">
+        {{#each data}}
+        <li>
+            <a  href="{{../servicePath}}/rcStandard/download?id={{id}}"><b></b>{{name}}</a>
+            {{#each childs}}
+            <p ><a href="{{../../servicePath}}/rcStandard/download?id={{id}}">{{name}}</a></p>
+            {{/each}}
+        </li>
+        {{/each}}
+    </script>
+</div>
+@@include('../components/footer.html')
+</body>
+@@include('../components/js.html')
+<script src="../../js/common/jquery.pagination.js"></script>
+<script type="text/javascript" src="../../js/material/job-specification.js"></script>
+</html>

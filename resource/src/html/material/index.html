@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>资料规范</title>
+    @@include('../components/css.html')
+    <link type="text/css" href="../../css/index.css" rel="stylesheet">
+    <link type="text/css" href="../../css/materialSpecification.css" rel="stylesheet">
+</head>
+<body>
+@@include('../components/header.html')
+
+<div class="banner-box"></div>
+<div class="content p20 cf">
+    <div class="fl ms-box">
+        <h2 class="h2-bl-title"><span>培训视频</span></h2>
+        <div class="video-training">
+            <video id="example_video_1" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="none"
+                   width="545" height="230"
+                   poster="../../img/video.png" data-setup="{}">
+                <source class="video-source" src=""/>
+            </video>
+        </div>
+    </div>
+    <div class="fr ms-box">
+        <h2 class="h2-bl-title"><span>文件资料</span><a class="icon iconfont icon-iconfontgengduo fr"
+                                                    href="job-specification.html?type=2"></a></h2>
+        <ul class="ul-list-box ul-height" id="listzl">
+            <script id="listzl-template" type="text/x-handlebars-template">
+                {{#each data}}
+                <li>
+                    <a href="{{../servicePath}}/rcStandard/download?id={{id}}"><b></b>{{name}}</a>
+                    {{#each childs}}
+                    <p class="bb-dashed" onclick="dwFile({{id}})">{{name}}</p>
+                    {{/each}}
+                </li>
+                {{/each}}
+            </script>
+        </ul>
+    </div>
+    <div class="fl ms-box">
+        <h2 class="h2-bl-title"><span>宣讲解读</span><a class="icon iconfont icon-iconfontgengduo fr"
+                                                    href="job-specification.html?type=3"></a></h2>
+        <ul class="ul-list-box ul-height" id="listjd">
+            <script id="listjd-template" type="text/x-handlebars-template">
+                {{#each data}}
+                <li>
+                    <a href="{{../servicePath}}/rcStandard/download?id={{id}}"><b></b>{{name}}</a>
+                    {{#each childs}}
+                    <p class="bb-dashed"><a href="{{../../servicePath}}/rcStandard/download?id={{id}}">{{name}}</a></p>
+                    {{/each}}
+                </li>
+                {{/each}}
+            </script>
+        </ul>
+    </div>
+    <div class="fr ms-box">
+        <h2 class="h2-bl-title"><span>工作规范</span><a class="icon iconfont icon-iconfontgengduo fr"
+                                                    href="job-specification.html?type=4"></a></h2>
+        <ul class="ul-list-box ul-height" id="listgf">
+            <script id="listgf-template" type="text/x-handlebars-template">
+                {{#each data}}
+                <li>
+                    <a href="{{../servicePath}}/rcStandard/download?id={{id}}"><b></b>{{name}}</a>
+                    {{#each childs}}
+                    <p class="bb-dashed"><a href="{{../../servicePath}}/rcStandard/download?id={{id}}">{{name}}</a></p>
+                    {{/each}}
+                </li>
+                {{/each}}
+            </script>
+        </ul>
+    </div>
+</div>
+
+@@include('../components/footer.html')
+</body>
+@@include('../components/js.html')
+<script type="text/javascript" src="../../js/material/index.js"></script>
+</html>

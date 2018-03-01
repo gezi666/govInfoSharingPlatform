@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>找目录</title>
+    <link type="text/css" href="../../css/iconfont.css" rel="stylesheet">
+<link type="text/css" href="../../css/commonn.css" rel="stylesheet">
+    <script type="text/javascript" src="../../js/common/jquery.js"></script>
+<script type="text/javascript" src="../../js/common/common.js"></script>
+</head>
+
+<body>
+<div class="header">
+	<div class="head-box wapper clearfix">
+		<div class="head-logo"><img src="../../img/logo.png"> </div>
+		<div class="head-menu">
+			<i class="iconfont icon-tuichu head-tuichu"></i>
+			<div class="head-user">
+				<i class="iconfont icon-yonghu head-yonghu"></i>
+				<span class="head-username">Admin</span>
+				<i class="head-down"></i>
+				<div class="head-user-dis">
+					<p>个人信息</p>
+					<p class="lastp">退出登录</p>
+				</div>
+			</div>
+			<div class="head-search">
+				<input type="text" class="head-search-input">
+				<i class="iconfont icon-sousuo head-search-icon"></i>
+			</div>
+		</div>
+	</div>
+	<div class="navbox">
+		<div class="nav">
+			<div class="nav-box wapper clearfix">
+				<ul class="nav-list">
+					<li class="firstli">
+						<i class="iconfont icon-mulu1"></i>政务数据分类
+						<div class="nav-more">
+							<ul class="nav-more-left">
+								<li class="nth1">
+									<a href="../baseInfo/index.html"><i class="iconfont icon-file"></i>基础信息<span></span><em></em></a>
+									<ul class="nav-more-dis">
+										<li>
+											<div>
+												<p class="nav-more-dis1"><img src="../../img/navImg.png"> </p>
+												<p class="nav-more-dis2">党中央</p>
+												<p class="nav-more-dis3">（1231条）</p>
+											</div>
+										</li>
+										<li>
+											<div>
+												<p class="nav-more-dis1"><img src="../../img/navImg2.png"> </p>
+												<p class="nav-more-dis2">全国人大常委</p>
+												<p class="nav-more-dis3">（34条）</p>
+											</div>
+										</li>
+									</ul>
+								</li>
+								<li class="nth2">
+									<a href="../egovernmen/eGovernmentThesauri.html"><i class="iconfont icon-zhengwu"></i>政务主题<span></span><em></em></a>
+									<ul class="nav-more-dis">
+										<li>
+											<div>
+												<p class="nav-more-dis1"><img src="../../img/navImg.png"> </p>
+												<p class="nav-more-dis2">党中央</p>
+												<p class="nav-more-dis3">（1231条）</p>
+											</div>
+										</li>
+										<li>
+											<div>
+												<p class="nav-more-dis1"><img src="../../img/navImg.png"> </p>
+												<p class="nav-more-dis2">全国人大常委</p>
+												<p class="nav-more-dis3">（34条）</p>
+											</div>
+										</li>
+									</ul>
+								</li>
+								<li class="nth3">
+									<a href="../egovernmen/departmentResources.html"><i class="iconfont icon-bumenfuzhi"></i>部门资源<span></span><em></em></a>
+									<ul class="nav-more-dis">
+										<li>
+											<div>
+												<p class="nav-more-dis1"><img src="../../img/navImg2.png"> </p>
+												<p class="nav-more-dis2">党中央</p>
+												<p class="nav-more-dis3">（1231条）</p>
+											</div>
+										</li>
+										<li>
+											<div>
+												<p class="nav-more-dis1"><img src="../../img/navImg2.png"> </p>
+												<p class="nav-more-dis2">全国人大常委</p>
+												<p class="nav-more-dis3">（34条）</p>
+											</div>
+										</li>
+									</ul>
+								</li>
+								<li class="nth4">
+									<a href="../egovernmen/localResources.html"><i class="iconfont icon-difangditu-"></i>地方资源<span></span><em></em></a>
+									<ul class="nav-more-dis">
+										<li>
+											<div>
+												<p class="nav-more-dis1"><img src="../../img/navImg2.png"> </p>
+												<p class="nav-more-dis2">党中央</p>
+												<p class="nav-more-dis3">（1231条）</p>
+											</div>
+										</li>
+										<li>
+											<div>
+												<p class="nav-more-dis1"><img src="../../img/navImg.png"> </p>
+												<p class="nav-more-dis2">全国人大常委</p>
+												<p class="nav-more-dis3">（34条）</p>
+											</div>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="active"><a href="../index/index.html"><i class="iconfont icon-zhuye"></i>首页</a></li>
+					<li><a href="../directory/index.html"><i class="iconfont icon-mulu"></i>找目录</a></li>
+					<li><a href="../material/index.html"><i class="iconfont icon-ziliao"></i>资料规范</a></li>
+					<li id="fusion"><a href="../fusion/index.html"><i class="iconfont icon-gongxiang"></i>融合共享动态</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="main">
+    <div class="content-wrap clearfix">
+        <div class="list-con fl">
+            <div class="select-wrap">
+                <div class="selected-wrap clearfix">
+                    <span class="label selected-label fl">已选条件：</span>
+                    <ul id='selected-condition' class="selected-condition fl">
+                    </ul>
+                    <script id="sel-con-template" type="text/x-handlebars-template">
+                        {{#each this}}
+                            <li>{{this}}<span class="delself">&times;</span></li>
+                        {{/each}}
+                    </script>
+                </div>
+                <div class="classified-wrap clearfix">
+                    <div class="classified-line resource clearfix">
+                        <!--<span class="label fl">资源分类：</span>-->
+                        <ul class="select-item-wrap fl">
+                            <li class="label">资源分类：</li>
+                            <li class="select-item">基本信息</li>
+                            <li class="select-item">政务主题</li>
+                            <li class="select-item">部门资源</li>
+                            <li class="select-item">地方资源</li>
+                        </ul>
+                    </div>
+                    <div class="classified-line theme dn clearfix">
+                        <ul class="select-item-wrap fl">
+                            <li class="label">政务主题：</li>
+                            <li class="select-item">全民健康保障</li>
+                            <li class="select-item">全民住房保障</li>
+                            <li class="select-item">全民社会保障</li>
+                            <li class="select-item">药品安全监督</li>
+                            <li class="select-item">食品安全监管</li>
+                            <li class="select-item">安全生产监督</li>
+                            <li class="select-item">市场价格监管</li>
+                        </ul>
+                        <span class="show-more fr">更多<i class="iconfont icon-arrow-t"></i></span>
+                    </div>
+                    <div class="classified-line mode clearfix">
+                        <!--<span class="label fl">提供方式：</span>-->
+                        <ul class="select-item-wrap fl">
+                            <li class="label">提供方式：</li>
+                            <li class="select-item">数据库</li>
+                            <li class="select-item">文件</li>
+                            <li class="select-item">API服务</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="search-wrap clearfix">
+                <p class="search-con fr">
+                    <input class="search-txt" type="text" placeholder="在结果中搜索">
+                    <i class="search-ico iconfont icon-sousuo"></i>
+                </p>
+            </div>
+            <div class="list-wrap">
+                <div class="sort-wrap clearfix">
+                    <ul class="sort-list-wrap fl">
+                        <li class="sort-item active">按更新时间<i class="sort-ico"></i></li>
+                        <li class="sort-item">按数据量<i class="sort-ico"></i></li>
+                        <li class="sort-item">按访问量<i class="sort-ico"></i></li>
+                        <li class="sort-item">按使用量<i class="sort-ico"></i></li>
+                    </ul>
+                    <p class="result fr">为您找到<span class="result-count">46</span>条记录</p>
+                </div>
+                <ul class="list-item-wrap">
+                    <li class="list-item">
+                        <div class="title-wrap">
+                            <a href="./directory-resources-details.html" class="title" target="_blank">计量标准器具核准</a>
+                        </div>
+                        <div class="info-wrap clearfix">
+                            <div class="details-wrap fl">
+                                <p class="briefly">申请企业信息、计量标准基本信息、审核结果</p>
+                                <ul class="info-resources clearfix">
+                                    <li class="provider">
+                                        <span class="info-label">信息资源提供方：</span>
+                                        <span class="info-value">福建省</span>
+                                    </li>
+                                    <li class="catalog">
+                                        <span class="info-label">信息资源目录：</span>
+                                        <span class="info-value">部门信息资源-省和计划单列市-厦门市-质监局</span>
+                                    </li>
+                                    <li class="type">
+                                        <span class="info-label">共享类型：</span>
+                                        <span class="info-value">有条件共享</span>
+                                    </li>
+                                    <li class="publish-time">
+                                        <span class="info-label">发布时间：</span>
+                                        <span class="info-value">2017-10-10  19:52</span>
+                                    </li>
+                                    <li class="update-time">
+                                        <span class="info-label">更新时间：</span>
+                                        <span class="info-value">2017-10-10  19:52</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="operation-wrap fr">
+                                <button class="btn collection"><i class="iconfont icon-L1"></i>收藏</button>
+                                <a class="btn apply" href="./directory-apply.html"><i class="iconfont icon-shenqing"></i>申请</a>
+                            </div>
+                        </div>
+                        <ul class="statistics-wrap clearfix">
+                            <li class="statistics-visit">
+                                <i class="iconfont icon-chakan"></i>
+                                <p class="label-wrap">
+                                    <span class="statistics-label">访问量：</span>
+                                    <span class="statistics-value visit">25</span>
+                                </p>
+                            </li>
+                            <li class="statistics-use">
+                                <i class="iconfont icon-jigoushuju"></i>
+                                <p class="label-wrap">
+                                    <span class="statistics-label">使用量：</span>
+                                    <span class="statistics-value visit">54</span>
+                                </p>
+                            </li>
+                            <li class="statistics-data">
+                                <i class="iconfont icon-shujuliang"></i>
+                                <p class="label-wrap">
+                                    <span class="statistics-label">数据量：</span>
+                                    <span class="statistics-value visit">54</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-item">
+                        <div class="title-wrap">
+                            <a href="./directory-resources-details.html" class="title" target="_blank">计量标准器具核准</a>
+                        </div>
+                        <div class="info-wrap clearfix">
+                            <div class="details-wrap fl">
+                                <p class="briefly">申请企业信息、计量标准基本信息、审核结果</p>
+                                <ul class="info-resources clearfix">
+                                    <li class="provider">
+                                        <span class="info-label">信息资源提供方：</span>
+                                        <span class="info-value">福建省</span>
+                                    </li>
+                                    <li class="catalog">
+                                        <span class="info-label">信息资源目录：</span>
+                                        <span class="info-value">部门信息资源-省和计划单列市-厦门市-质监局</span>
+                                    </li>
+                                    <li class="type">
+                                        <span class="info-label">共享类型：</span>
+                                        <span class="info-value">有条件共享</span>
+                                    </li>
+                                    <li class="publish-time">
+                                        <span class="info-label">发布时间：</span>
+                                        <span class="info-value">2017-10-10  19:52</span>
+                                    </li>
+                                    <li class="update-time">
+                                        <span class="info-label">更新时间：</span>
+                                        <span class="info-value">2017-10-10  19:52</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="operation-wrap fr">
+                                <button class="btn collection"><i class="iconfont icon-L1"></i>收藏</button>
+                                <a class="btn apply" href="./directory-apply.html"><i class="iconfont icon-shenqing"></i>申请</a>
+                            </div>
+                        </div>
+                        <ul class="statistics-wrap clearfix">
+                            <li class="statistics-visit">
+                                <i class="iconfont icon-chakan"></i>
+                                <p class="label-wrap">
+                                    <span class="statistics-label">访问量：</span>
+                                    <span class="statistics-value visit">25</span>
+                                </p>
+                            </li>
+                            <li class="statistics-use">
+                                <i class="iconfont icon-jigoushuju"></i>
+                                <p class="label-wrap">
+                                    <span class="statistics-label">使用量：</span>
+                                    <span class="statistics-value visit">54</span>
+                                </p>
+                            </li>
+                            <li class="statistics-data">
+                                <i class="iconfont icon-shujuliang"></i>
+                                <p class="label-wrap">
+                                    <span class="statistics-label">数据量：</span>
+                                    <span class="statistics-value visit">54</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-item">
+                        <div class="title-wrap">
+                            <a href="./directory-resources-details.html" class="title" target="_blank">计量标准器具核准</a>
+                        </div>
+                        <div class="info-wrap clearfix">
+                            <div class="details-wrap fl">
+                                <p class="briefly">申请企业信息、计量标准基本信息、审核结果</p>
+                                <ul class="info-resources clearfix">
+                                    <li class="provider">
+                                        <span class="info-label">信息资源提供方：</span>
+                                        <span class="info-value">福建省</span>
+                                    </li>
+                                    <li class="catalog">
+                                        <span class="info-label">信息资源目录：</span>
+                                        <span class="info-value">部门信息资源-省和计划单列市-厦门市-质监局</span>
+                                    </li>
+                                    <li class="type">
+                                        <span class="info-label">共享类型：</span>
+                                        <span class="info-value">有条件共享</span>
+                                    </li>
+                                    <li class="publish-time">
+                                        <span class="info-label">发布时间：</span>
+                                        <span class="info-value">2017-10-10  19:52</span>
+                                    </li>
+                                    <li class="update-time">
+                                        <span class="info-label">更新时间：</span>
+                                        <span class="info-value">2017-10-10  19:52</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="operation-wrap fr">
+                                <button class="btn collection"><i class="iconfont icon-L1"></i>收藏</button>
+                                <a class="btn apply" href="./directory-apply.html"><i class="iconfont icon-shenqing"></i>申请</a>
+                            </div>
+                        </div>
+                        <ul class="statistics-wrap clearfix">
+                            <li class="statistics-visit">
+                                <i class="iconfont icon-chakan"></i>
+                                <p class="label-wrap">
+                                    <span class="statistics-label">访问量：</span>
+                                    <span class="statistics-value visit">25</span>
+                                </p>
+                            </li>
+                            <li class="statistics-use">
+                                <i class="iconfont icon-jigoushuju"></i>
+                                <p class="label-wrap">
+                                    <span class="statistics-label">使用量：</span>
+                                    <span class="statistics-value visit">54</span>
+                                </p>
+                            </li>
+                            <li class="statistics-data">
+                                <i class="iconfont icon-shujuliang"></i>
+                                <p class="label-wrap">
+                                    <span class="statistics-label">数据量：</span>
+                                    <span class="statistics-value visit">54</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-item">
+                        <div class="title-wrap">
+                            <a href="./directory-resources-details.html" class="title" target="_blank">计量标准器具核准</a>
+                        </div>
+                        <div class="info-wrap clearfix">
+                            <div class="details-wrap fl">
+                                <p class="briefly">申请企业信息、计量标准基本信息、审核结果</p>
+                                <ul class="info-resources clearfix">
+                                    <li class="provider">
+                                        <span class="info-label">信息资源提供方：</span>
+                                        <span class="info-value">福建省</span>
+                                    </li>
+                                    <li class="catalog">
+                                        <span class="info-label">信息资源目录：</span>
+                                        <span class="info-value">部门信息资源-省和计划单列市-厦门市-质监局</span>
+                                    </li>
+                                    <li class="type">
+                                        <span class="info-label">共享类型：</span>
+                                        <span class="info-value">有条件共享</span>
+                                    </li>
+                                    <li class="publish-time">
+                                        <span class="info-label">发布时间：</span>
+                                        <span class="info-value">2017-10-10  19:52</span>
+                                    </li>
+                                    <li class="update-time">
+                                        <span class="info-label">更新时间：</span>
+                                        <span class="info-value">2017-10-10  19:52</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="operation-wrap fr">
+                                <button class="btn collection"><i class="iconfont icon-L1"></i>收藏</button>
+                                <a class="btn apply" href="./directory-apply.html"><i class="iconfont icon-shenqing"></i>申请</a>
+                            </div>
+                        </div>
+                        <ul class="statistics-wrap clearfix">
+                            <li class="statistics-visit">
+                                <i class="iconfont icon-chakan"></i>
+                                <p class="label-wrap">
+                                    <span class="statistics-label">访问量：</span>
+                                    <span class="statistics-value visit">25</span>
+                                </p>
+                            </li>
+                            <li class="statistics-use">
+                                <i class="iconfont icon-jigoushuju"></i>
+                                <p class="label-wrap">
+                                    <span class="statistics-label">使用量：</span>
+                                    <span class="statistics-value visit">54</span>
+                                </p>
+                            </li>
+                            <li class="statistics-data">
+                                <i class="iconfont icon-shujuliang"></i>
+                                <p class="label-wrap">
+                                    <span class="statistics-label">数据量：</span>
+                                    <span class="statistics-value visit">54</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-item">
+                        <div class="title-wrap">
+                            <a href="./directory-resources-details.html" class="title" target="_blank">计量标准器具核准</a>
+                        </div>
+                        <div class="info-wrap clearfix">
+                            <div class="details-wrap fl">
+                                <p class="briefly">申请企业信息、计量标准基本信息、审核结果</p>
+                                <ul class="info-resources clearfix">
+                                    <li class="provider">
+                                        <span class="info-label">信息资源提供方：</span>
+                                        <span class="info-value">福建省</span>
+                                    </li>
+                                    <li class="catalog">
+                                        <span class="info-label">信息资源目录：</span>
+                                        <span class="info-value">部门信息资源-省和计划单列市-厦门市-质监局</span>
+                                    </li>
+                                    <li class="type">
+                                        <span class="info-label">共享类型：</span>
+                                        <span class="info-value">有条件共享</span>
+                                    </li>
+                                    <li class="publish-time">
+                                        <span class="info-label">发布时间：</span>
+                                        <span class="info-value">2017-10-10  19:52</span>
+                                    </li>
+                                    <li class="update-time">
+                                        <span class="info-label">更新时间：</span>
+                                        <span class="info-value">2017-10-10  19:52</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="operation-wrap fr">
+                                <button class="btn collection"><i class="iconfont icon-L1"></i>收藏</button>
+                                <a class="btn apply" href="./directory-apply.html"><i class="iconfont icon-shenqing"></i>申请</a>
+                            </div>
+                        </div>
+                        <ul class="statistics-wrap clearfix">
+                            <li class="statistics-visit">
+                                <i class="iconfont icon-chakan"></i>
+                                <p class="label-wrap">
+                                    <span class="statistics-label">访问量：</span>
+                                    <span class="statistics-value visit">25</span>
+                                </p>
+                            </li>
+                            <li class="statistics-use">
+                                <i class="iconfont icon-jigoushuju"></i>
+                                <p class="label-wrap">
+                                    <span class="statistics-label">使用量：</span>
+                                    <span class="statistics-value visit">54</span>
+                                </p>
+                            </li>
+                            <li class="statistics-data">
+                                <i class="iconfont icon-shujuliang"></i>
+                                <p class="label-wrap">
+                                    <span class="statistics-label">数据量：</span>
+                                    <span class="statistics-value visit">54</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="pagination clearfix">
+                    <ul class="fr clearfix">
+                        <li><span>共4815页，每页100条</span></li>
+                        <li class="item first"><a href="javascript:;">&lt;&lt;</a></li>
+                        <li class="item"><a href="javascript:;">&lt;</a></li>
+                        <li class="item"><a href="javascript:;">1</a></li>
+                        <li class="item"><a href="javascript:;">2</a></li>
+                        <li class="item"><a href="javascript:;">&gt;</a></li>
+                        <li class="item last"><a href="javascript:;">&gt;&gt;</a></li>
+                        <li class="confirm"><a href="javascript:;" class="btn-queding">确定</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="right-wrap fr">
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>右侧菜单</title>
+    <link rel="stylesheet" href="../../css/iconfont.css">
+    <link rel="stylesheet" href="../../css/commonn.css">
+</head>
+<body>
+<div class="right-bar">
+    <div class="right-bar-list">
+        <h2 class="h2-title">目录访问<span>Top5</span></h2>
+        <ul class="ul-list">
+            <li class="clearfix">
+                <i class="fl i-medal icon iconfont icon-jiangpai-"></i>
+                <div class="fl div-nedal-content">
+                    <h3>计量标准器具核准</h3>
+                    <p>信息提供方：<span>福建省</span></p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <i class="fl i-medal icon iconfont icon-jiangpai-1"></i>
+                <div class="fl div-nedal-content">
+                    <h3>计量标准器具核准</h3>
+                    <p>信息提供方：<span>福建省</span></p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <i class="fl i-medal icon iconfont icon-jiangpai-2"></i>
+                <div class="fl div-nedal-content">
+                    <h3>计量标准器具核准</h3>
+                    <p>信息提供方：<span>福建省</span></p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <i class="fl i-medal icon iconfont icon-jinduyuan"></i>
+                <div class="fl div-nedal-content">
+                    <h3>计量标准器具核准</h3>
+                    <p>信息提供方：<span>福建省</span></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="right-bar-box">
+        <h2>资源交换 <span>Top5</span><i class="icon iconfont icon-arrow-t fr"></i></h2>
+    </div>
+    <div class="right-bar-box">
+        <h2>资源下载 <span>Top5</span><i class="icon iconfont icon-arrow-t fr"></i></h2>
+    </div>
+    <div class="right-bar-box">
+        <h2>资源调用 <span>Top5</span><i class="icon iconfont icon-arrow-t fr"></i></h2>
+    </div>
+</div>
+</body>
+</html>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="foot-top">
+        <a href="#">关于我们</a>
+        <span>|</span>
+        <a href="#">服务条款</a>
+        <span>|</span>
+        <a href="#">友情链接</a>
+    </div>
+    <div class="foot-tbottom">技术支持：九次方大数据信息集团有限公司</div>
+</div>
+</body>
+
+<!-- <script src="../../js/common/handlebars-v4.0.11.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+<script src="../../js/directory/index.js"></script>
+</html>
